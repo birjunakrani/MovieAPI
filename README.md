@@ -14,7 +14,7 @@ You can use any API testing tool like [_**postman**_](https://www.getpostman.com
 ## ER Diagram & API Call Instructions
 <img src="images/MovieApiProject_ER_diagram.jpg" width="450" align="right" />
 
-Please visit [_**lucidchart**_](https://www.lucidchart.com/documents/view/5f949dd9-35c3-4d6c-80af-716b05ba4bdd/0_0) to see ER diagram showing entity relationships in detail. 
+Please visit [_**lucidchart**_](https://www.lucidchart.com/documents/edit/5f949dd9-35c3-4d6c-80af-716b05ba4bdd/0_0) to see ER diagram showing entity relationships in detail. 
 
 Next to the diagram, you can also find some _instructions_ to perform CRUD operation and _URLs_ to test these operations.
 
