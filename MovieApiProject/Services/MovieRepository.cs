@@ -55,11 +55,11 @@ namespace MovieApiProject.Services
         }
 
         //need Lis<int> as a paarameted as these list of ids coming from Uri
-        public bool CreateMovie(List<int> directorId, List<int> categoryId, Movie movie)
+        public bool CreateMovie(List<int> directorsId, List<int> categoriesId, Movie movie)
         {
             //Movie enittiy model also has reeference to director & category model
-            var directors = _movieContext.Directors.Where(d => directorId.Contains(d.Id)).ToList();
-            var categories = _movieContext.Categories.Where(c => categoryId.Contains(c.Id)).ToList();
+            var directors = _movieContext.Directors.Where(d => directorsId.Contains(d.Id)).ToList();
+            var categories = _movieContext.Categories.Where(c => categoriesId.Contains(c.Id)).ToList();
             
             foreach(var director in directors)
             {
@@ -85,16 +85,18 @@ namespace MovieApiProject.Services
             return Save();
         }
 
-        public bool UpdateMovie(List<int> directorId, List<int> categoryId, Movie movie)
+        public bool UpdateMovie(List<int> directorsId, List<int> categoriesId, Movie movie)
         {
-            var directors = _movieContext.Directors.Where(d => directorId.Contains(d.Id)).ToList();
-            var categories = _movieContext.Categories.Where(c => categoryId.Contains(c.Id)).ToList();
+            /*update method removes the association of movie to directors/categories from associative table first in order to add new association as update method is used to update the movie object
+            and not associative table and thus idea is to delete that relationship first and add the newly updated relationship */
+            var directors = _movieContext.Directors.Where(d => directorsId.Contains(d.Id)).ToList();
+            var categories = _movieContext.Categories.Where(c => categoriesId.Contains(c.Id)).ToList();
 
-            var deleteMovieDirector = _movieContext.MovieDirectors.Where(md => md.MovieId == movie.Id);
-            var deleteMovieCategory = _movieContext.MovieCategories.Where(mc => mc.MovieId == movie.Id);
+            var deleteMovieDirector = _movieContext.MovieDirectors.Where(md => md.MovieId == movie.Id); 
+            var deleteMovieCategory = _movieContext.MovieCategories.Where(mc => mc.MovieId == movie.Id); 
 
-            _movieContext.RemoveRange(deleteMovieDirector);
-            _movieContext.RemoveRange(deleteMovieCategory);
+            _movieContext.RemoveRange(deleteMovieDirector); //removes the existing relationship from MovieDirectors table of movie with director based on movieId
+            _movieContext.RemoveRange(deleteMovieCategory); //removes the existing relationship from MovieCategories table of movie with category based on movieId
 
             foreach (var director in directors)
             {

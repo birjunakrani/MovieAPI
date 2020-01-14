@@ -125,7 +125,7 @@ namespace MovieApiProject.Controllers
             return Ok(rating);
         }
 
-        //.api/movies?directorId=xx&directorId=xx&catId=x&catId=x
+        //.api/movies?dirId=xx&dirId=xx&catId=x&catId=x
         [HttpPost]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -145,11 +145,11 @@ namespace MovieApiProject.Controllers
                 ModelState.AddModelError("", "Something went wrong, Please try again");
                 return StatusCode(500, ModelState);
             }
-            return CreatedAtRoute("GetMovie", new { movieId = createMovie.Id }, createMovie);
+            return CreatedAtRoute("GetMovie", new { movieId = createMovie.Id }, createMovie); //"movi
         }
 
 
-        //.api/movies/movieId?directorId=xx&directorId=xx&catId=x&catId=x
+        //.api/movies/{movieId}?dirId=xx&dirId=xx&catId=x&catId=x
         [HttpPut("{movieId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
@@ -163,7 +163,7 @@ namespace MovieApiProject.Controllers
             {
                 return BadRequest();
             }
-            if (movieRepository.MovieExists(movieId))
+            if (!movieRepository.MovieExists(movieId))
             {
                 return NotFound();
             }
@@ -181,7 +181,7 @@ namespace MovieApiProject.Controllers
         }
 
         //.api/movies/movieId
-        [HttpPut("{movieId}")]
+        [HttpDelete("{movieId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(422)]
@@ -189,7 +189,7 @@ namespace MovieApiProject.Controllers
         [ProducesResponseType(204)]
         public IActionResult DeleteMovie(int movieId)
         {
-            if (movieRepository.MovieExists(movieId))
+            if (!movieRepository.MovieExists(movieId))
             {
                 return NotFound();
             }
@@ -216,7 +216,7 @@ namespace MovieApiProject.Controllers
             if (movieRepository.IsDuplicateIsan(movie.Id, movie.Isan))
             {
                 ModelState.AddModelError("", "Isan already exists");
-                return StatusCode(422);
+                return StatusCode(422); //422 is unprocessed entity
             }
             foreach(int id in dirId)
             {

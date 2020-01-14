@@ -12,8 +12,8 @@ namespace MovieApiProject.Services
         bool IsDuplicateIsan(int movieId, string Isan);
         bool MovieExists(int movieId);
         bool MovieExists(string Isan);
-        bool CreateMovie(List<int> directorId, List<int> categoryId, Movie movie);
-        bool UpdateMovie(List<int> directorId, List<int> categoryId, Movie movie);
+        bool CreateMovie(List<int> directorsId, List<int> categoriesId, Movie movie);
+        bool UpdateMovie(List<int> directorsId, List<int> categoriesId, Movie movie);
         bool DeleteMovie(Movie movie);
       
         bool Save();

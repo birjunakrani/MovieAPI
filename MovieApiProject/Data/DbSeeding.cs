@@ -9,9 +9,10 @@ namespace MovieApiProject.Services
 {
     public static class DbSeeding
     {
+        //calling this method in startup.cs to seed(populate) the DB with below data 
         public static void seedDataContext(this MovieDbContext context)
         {
-            if(!context.MovieDirectors.Any())
+            if(!context.MovieDirectors.Any())  //this condition checks if the data hasn't been already populated in DB, then run the below code to populate it else skip it - to make sure everytime you call API, DB doesn't get populated with duplicate data.
             {
                //using MovieDirector associative model class so that can feed data in all tables at once
                 var moviesDirectors = new List<MovieDirector>()
