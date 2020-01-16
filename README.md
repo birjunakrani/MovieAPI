@@ -23,7 +23,7 @@ Next to the diagram, you can also find some _instructions_ to perform CRUD opera
 
 * I have used an instance of **SQL server** database, the connection string can be found in `launchsettings.json` file.
 
-* I have also seeded initial data through _Database Seeding method_ for easy testing. 
+* I have also seeded initial data through _Database Seeding method_  and used _Swagger_ (go to localhost:xxxx/swagger/index.html)for API documentation for ease of testing. 
 
 ## Things to bear in mind while testing
 * If you are **Creating/Adding** data to some of the entities, you need to be mindful of relationship.
