@@ -54,7 +54,7 @@ namespace MovieApiProject.Controllers
         }
 
         //api/movies/{movieId}
-        [HttpGet("{movieId}", Name = "GetMovie")]
+        [HttpGet("{movieId}", Name = "GetMovie")] //"GetMovie" refers to CreatedAtRoute("GetMovie") in side CreateMovie() action method
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(200, Type = typeof(MovieDTO))]
@@ -145,7 +145,7 @@ namespace MovieApiProject.Controllers
                 ModelState.AddModelError("", "Something went wrong, Please try again");
                 return StatusCode(500, ModelState);
             }
-            return CreatedAtRoute("GetMovie", new { movieId = createMovie.Id }, createMovie); //"movi
+            return CreatedAtRoute("GetMovie", new { movieId = createMovie.Id }, createMovie); //"movieId" must be the same as parameter of GetMovie() method
         }
 
 

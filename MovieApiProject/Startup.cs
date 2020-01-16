@@ -39,6 +39,15 @@ namespace MovieApiProject
             services.AddScoped<IReviewRepository, ReviewRepository>();
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IDirectorRepository, DirectorRepository>();
+            services.AddSwaggerGen(options=>
+            {
+                options.SwaggerDoc("MovieOpenApiSpec",
+                    new Microsoft.OpenApi.Models.OpenApiInfo()
+                    {
+                        Title = "Movie API",
+                        Version = "1"
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +65,11 @@ namespace MovieApiProject
             
             context.seedDataContext();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/MovieOpenApiSpec/swagger.json", "Movie API");
+            });
         }
     }
 }
