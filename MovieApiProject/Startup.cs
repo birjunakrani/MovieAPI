@@ -66,10 +66,15 @@ namespace MovieApiProject
             context.seedDataContext();
             app.UseMvc();
             app.UseSwagger();
+            //creates nice UI for API documentation
+            //For multiple API documentation - Add SwaggerDoc->Add EndPoint for that API in middleware->Add [ApiExplorerSettings(GroupName="MovieOpenApiSpec")] inside each controller
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/MovieOpenApiSpec/swagger.json", "Movie API");
+                //making the deafult path to go index.html which shows nice API documentation UI
+                options.RoutePrefix = "";
             });
+            
         }
     }
 }

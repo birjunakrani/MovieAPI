@@ -33,10 +33,6 @@ namespace MovieApiProject.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<MovieDTO>))]
         public IActionResult GetMovies()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             var movies = movieRepository.GetMovies();
             var moviesDTO = new List<MovieDTO>();
 
