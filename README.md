@@ -12,7 +12,7 @@ It exhibits CRUD operation performed through Web API.
 You can use any API testing tool like [_**postman**_](https://www.getpostman.com/) to test these API operations.
 
 ## ER Diagram & API Call Instructions
-<img src="images/MovieAPIProject_ER_diagram.jpg" width="450" align="right" />
+<img src="images/MovieAPIProject_ER_Diagram.JPG" width="450" align="right" />
 
 Please visit [_**lucidchart**_](https://www.lucidchart.com/documents/edit/5f949dd9-35c3-4d6c-80af-716b05ba4bdd/0_0) to see ER diagram showing entity relationships in detail. 
 
